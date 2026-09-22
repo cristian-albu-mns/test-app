@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #202522;
+  --muted: #66716a;
+  --paper: #f6f4ee;
+  --line: #d8ddd5;
+  --accent: #d85d3d;
+  --accent-dark: #a83d27;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+* { box-sizing: border-box; }
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+}
+a { color: inherit; text-decoration: none; }
+.resources-shell { min-height: 100vh; display: flex; flex-direction: column; }
+.site-main { width: min(1120px, calc(100% - 48px)); margin: 0 auto; flex: 1; }
+.site-header, .site-footer { width: min(1120px, calc(100% - 48px)); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.site-header { padding: 28px 0; border-bottom: 1px solid var(--line); }
+.wordmark { font-size: 1.2rem; font-weight: 700; letter-spacing: .02em; }
+.site-header nav { font-family: var(--font-geist-sans), sans-serif; font-size: .85rem; }
+.site-header nav a { color: var(--muted); }
+.site-header nav a:hover, .text-link:hover { color: var(--accent-dark); }
+.site-footer { padding: 44px 0 28px; color: var(--muted); font-family: var(--font-geist-sans), sans-serif; font-size: .75rem; }
+.site-footer p { margin: 0; }
+.eyebrow { color: var(--accent-dark); font-family: var(--font-geist-sans), sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.home-page { display: grid; place-items: center; min-height: 80vh; }
+.home-hero { max-width: 680px; padding: 80px 0; }
+h1, h2, p { margin-top: 0; }
+h1 { font-size: clamp(3.2rem, 8vw, 6.5rem); line-height: .95; letter-spacing: -.04em; margin-bottom: 28px; }
+.hero-copy { max-width: 470px; color: var(--muted); font-size: 1.25rem; line-height: 1.5; margin-bottom: 34px; }
+.button { display: inline-block; padding: 14px 20px; border-radius: 999px; background: var(--ink); color: var(--paper); font-family: var(--font-geist-sans), sans-serif; font-size: .8rem; font-weight: 600; }
+.collection-page { padding: 94px 0 60px; }
+.collection-intro { max-width: 700px; margin-bottom: 64px; }
+.collection-intro h1 { font-size: clamp(3rem, 7vw, 6rem); margin-bottom: 20px; }
+.collection-intro > p:last-child { color: var(--muted); font-size: 1.2rem; }
+.resource-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+.resource-card { padding: 26px 28px 30px 0; border-bottom: 1px solid var(--line); }
+.resource-card + .resource-card { padding-left: 28px; border-left: 1px solid var(--line); }
+.resource-card-meta { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 42px; color: var(--accent-dark); font-family: var(--font-geist-sans), sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.resource-card-meta time { color: var(--muted); font-weight: 400; }
+.resource-card h2 { max-width: 270px; font-size: 1.65rem; line-height: 1.05; }
+.resource-card p { min-height: 78px; color: var(--muted); line-height: 1.5; }
+.text-link { display: inline-block; color: var(--accent-dark); font-family: var(--font-geist-sans), sans-serif; font-size: .8rem; font-weight: 700; }
+.detail-page { max-width: 840px; padding: 100px 0 80px; }
+.detail-header { padding-bottom: 52px; border-bottom: 1px solid var(--line); }
+.detail-header h1 { max-width: 760px; font-size: clamp(3rem, 7vw, 6rem); }
+.detail-header > p { max-width: 570px; color: var(--muted); font-size: 1.25rem; line-height: 1.5; }
+.detail-copy { max-width: 620px; padding: 48px 0; }
+.detail-copy p { color: #3f4942; font-size: 1.25rem; line-height: 1.75; }
+@media (max-width: 760px) {
+  .site-main, .site-header, .site-footer { width: min(100% - 32px, 1120px); }
+  .collection-page, .detail-page { padding-top: 56px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .resource-card, .resource-card + .resource-card { padding: 24px 0 28px; border-left: 0; }
+  .resource-card-meta { margin-bottom: 28px; }
+  .resource-card p { min-height: auto; }
 }
